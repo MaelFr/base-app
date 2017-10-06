@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "build": "./node_modules/.bin/encore production",
+    "dev": "./node_modules/.bin/encore dev",
+    "dev-server": "./node_modules/.bin/encore dev-server --watch",
+    "watch": "./node_modules/.bin/encore dev --watch"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.15.1",
+    "bootstrap": "4.0.0-beta.2",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "node-sass": "^4.5.3",
+    "object.omit": "^3.0.0",
+    "popper.js": "^1.12.6",
+    "sass-loader": "^6.0.6"
+  }
+}

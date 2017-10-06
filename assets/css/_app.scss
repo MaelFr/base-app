@@ -1,0 +1,11 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: $footer-height;
+  > .container {
+    padding: 60px 15px 0;
+  }
+}

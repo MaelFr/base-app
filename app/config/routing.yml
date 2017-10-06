@@ -1,3 +1,21 @@
-app:
+app_web:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+app_web_admin:
+    resource: '@AppBundle/Controller/Admin/'
+    type: annotation
+    prefix: /admin
+
+app_api:
+    resource: '@AppBundle/Controller/Api'
+    type: annotation
+    prefix: /api
+    defaults:
+        _format: json
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /admin/groups

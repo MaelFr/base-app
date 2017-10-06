@@ -33,3 +33,7 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    AppBundle\EventListener\ApiExceptionSubscriber:
+        arguments:
+            $debug: '%kernel.debug%'

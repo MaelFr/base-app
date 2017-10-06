@@ -1,0 +1,20 @@
+cancel: Annuler
+edit: Editer
+save: Enregistrer
+
+menu:
+  admin: Admin
+  homepage: Page d'accueil
+  login: Connexion
+  logout: Déconnexion
+
+page:
+  next: Suivants
+  previous: Précédents
+
+user:
+  email: E-mail
+  lastLogin: Dernière connexion
+  username: Nom d'utilisateur
+  users: Utilisateurs
+  groups: Groupes

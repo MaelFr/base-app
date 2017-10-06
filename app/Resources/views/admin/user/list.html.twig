@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h2>{{ 'user.users'|trans }}</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>{{ 'user.username'|trans }}</th>
+                <th>{{ 'user.email'|trans }}</th>
+                <th>{{ 'user.lastLogin'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('admin_users_show', {id: user.id}) }}">{{ user.username }}</a></td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.lastLogin ? user.lastLogin|date('d/m/Y H:i') : '-' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if nbPages >= 2 %}
+        <div class="text-center">
+            {% set page = app.request.attributes.get('page') ?: 1 %}
+            <nav aria-label="User list page navigation">
+                <ul class="pagination">
+                    {% if page >= 2 %}
+                        <li>
+                            <a href="{{ path('admin_users_index') }}" aria-label="{{ 'page.previous'|trans }}">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if page >= 4 %}
+                        {% for numPage in page - 2 .. page + 2 %}
+                            {% if numPage <= nbPages %}
+                                <li><a href="{{ path('admin_users_index_page', {page: numPage}) }}">{{ numPage }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <li><a href="{{ path('admin_users_index') }}">1</a></li>
+                        {% for numPage in 2..5 %}
+                            {% if numPage <= nbPages %}
+                                <li><a href="{{ path('admin_users_index_page', {page: numPage}) }}">{{ numPage }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if page < nbPages %}
+                        <li>
+                            <a href="{{ path('admin_users_index_page', {page: nbPages}) }}" aria-label="{{ 'page.next'|trans }}">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+
+{% endblock %}

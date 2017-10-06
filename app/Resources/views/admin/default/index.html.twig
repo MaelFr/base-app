@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h2>Admin</h2>
+    <ul>
+        <li><a href="{{ path('admin_users_index') }}">{{ 'user.users'|trans }}</a></li>
+        <li><a href="{{ path('fos_user_group_list') }}">{{ 'user.groups'|trans }}</a></li>
+    </ul>
+{% endblock %}

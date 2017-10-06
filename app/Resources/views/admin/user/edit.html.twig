@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h2>{{ 'user'|trans({}, 'user') }}</h2>
+    {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.groups) }}
+        {{ form_row(form.enabled) }}
+        <div class="form-group">
+            <button
+                    type="submit"
+                    class="btn btn-primary"
+            >
+                <i class="fa fa-floppy-o"></i> {{ 'save'|trans }}
+            </button>
+            <a href="{{ path('admin_users_show', {id: user.id}) }}" class="btn btn-secondary">
+                <i class="fa fa-times"></i> {{ 'cancel'|trans }}
+            </a>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

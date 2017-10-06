@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'user' %}
+
+{% block main %}
+    <h2>{{ 'user'|trans }}</h2>
+    <p>
+        <ul>
+            <li>{{ 'username'|trans }}: {{ user.username }}</li>
+            <li>{{ 'email'|trans }}: {{ user.email }}</li>
+            <li>{{ 'enabled'|trans }}: {{ user.enabled ? 'Oui' : 'Non' }}</li>
+            {% if is_granted('CAN_SEE_USER_DETAIL', user) %}
+                <li>
+                    {{ 'role'|trans }}:
+                    {{ user.superAdmin
+                        ? 'Super Admin'
+                        : user.hasRole('ROLE_ADMIN')
+                            ? 'Admin'
+                            : '-' }}
+                </li>
+            {% endif %}
+        </ul>
+    </p>
+    {% if is_granted('CAN_EDIT_USER', user) %}
+        <p>
+            <a
+                    href="{{ path('admin_users_edit', {'id': user.id}) }}"
+                    class="btn btn-primary"
+                    role="button"
+            >
+                <i class="fa fa-pencil-square-o"></i> {{ 'edit'|trans({}, 'messages') }}
+            </a>
+        </p>
+    {% endif %}
+{% endblock %}

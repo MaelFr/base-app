@@ -1,0 +1,27 @@
+AppBundle\Entity\Group:
+    group_admin:
+        __construct: [admin, ['ROLE_ADMIN']]
+
+AppBundle\Entity\User:
+    user:
+        username: user
+        email: user@baseapp.com
+        plainPassword: dev
+        enabled: true
+    admin:
+        username: admin
+        email: admin@baseapp.com
+        plainPassword: dev
+        enabled: true
+        groups: ['@group_admin']
+    superAdmin:
+        username: superAdmin
+        email: superadmin@baseapp.com
+        plainPassword: dev
+        enabled: true
+        roles: ['ROLE_SUPER_ADMIN']
+    user_{1..23}:
+        username: <firstName()> <lastName()>
+        email: <email()>
+        plainPassword: dev
+        enabled: true

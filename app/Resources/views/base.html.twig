@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>{% block title %}Base App{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('build/global.css') }}">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <header>
+            {% block header %}
+                {{ include('_header.html.twig') }}
+            {% endblock %}
+        </header>
+
+        <main class="container" role="main">
+            {% block body %}
+                <div class="row">
+                    <div id="main" class="col-sm-9">
+                        {{ include('_flash_messages.html.twig') }}
+
+                        {% block main %}{% endblock %}
+                    </div>
+
+                    <div id="sidebar" class="col-sm-3">
+                        {% block sidebar %}
+                            Sidebar content
+                        {% endblock %}
+                    </div>
+                </div>
+            {% endblock %}
+        </main>
+
+        <footer id="app-footer">
+            {% block footer %}
+                {{ include('_footer.html.twig') }}
+            {% endblock %}
+        </footer>
+
+        {% block javascripts %}
+            <script src="{{ asset('build/manifest.json') }}"></script>
+            {#<script src="{{ asset('build/js/common.js') }}"></script>#}
+            <script src="{{ asset('build/app.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
